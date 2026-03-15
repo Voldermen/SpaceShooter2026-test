@@ -35,13 +35,13 @@ public class Player : MonoBehaviour{
             // If down is pressed, move the player down
            this.transform.Translate(Vector3.down * speed * Time.deltaTime);
        } 
-       if (this.transform.position.y > Y_LIMIT){ 
+       if (this.transform.position.y > (Y_LIMIT - 0.3f)){ 
             // If the player goes above the Y limit, set its position to the Y limit
-           this.transform.position = new Vector3(transform.position.x, Y_LIMIT);
+           this.transform.position = new Vector3(transform.position.x, (Y_LIMIT - 0.3f));
        }
-       else if (this.transform.position.y < -Y_LIMIT){ 
+       else if (this.transform.position.y < (-Y_LIMIT - 0.1f)){ 
             // If the player goes below the Y limit, set its position to the negative Y limit
-           this.transform.position = new Vector3(transform.position.x, -Y_LIMIT);
+           this.transform.position = new Vector3(transform.position.x, (-Y_LIMIT - 0.1f));
        }
 
        if (inputActions.Standard.MoveRight.IsPressed()){ 
@@ -53,15 +53,15 @@ public class Player : MonoBehaviour{
            this.transform.Translate(Vector3.left * speed * Time.deltaTime);
        }
 
-       if (this.transform.position.x > X_LIMIT){ 
+       if (this.transform.position.x > (X_LIMIT - 0.1f)){ 
             // If the player goes above the X limit, set its position to the X limit
-           this.transform.position = new Vector3(transform.position.y, X_LIMIT);
+           this.transform.position = new Vector3((X_LIMIT - 0.1f), transform.position.y);
        }
 
-       else if (this.transform.position.x < (-X_LIMIT - 0.8f)){ 
+       else if (this.transform.position.x < (-X_LIMIT - 0.6f)){ 
             // If the player goes below the X limit, set its position to the negative X limit.                                            
             // I added 0.8f to account for the size of the player sprite, so it doesn't go off screen completely.
-           this.transform.position = new Vector3(transform.position.y, -X_LIMIT);
+           this.transform.position = new Vector3((-X_LIMIT - 0.6f) , transform.position.y);
        }
 
     }
