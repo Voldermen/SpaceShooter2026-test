@@ -1,16 +1,17 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Player : MonoBehaviour{
  //set in inspector
    public float speed = 5.1f;
    public GameObject bulletPrefab;
    public Transform bulletSpawnPoint;
-
+   public Slider sliderHealth;
+   public Shield shield;
+    // private fields
    private SpaceShooterInputActions inputActions;
-
-
    private const float Y_LIMIT = 4.6f;
    private const float X_LIMIT = 8.0f; 
+   private float health;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start(){
@@ -18,10 +19,16 @@ public class Player : MonoBehaviour{
         inputActions= new();
         inputActions.Enable();
         inputActions.Standard.Enable();
+        health=1.0f;
     }
 
     // Update is called once per frame
     private void Update(){
+     
+       
+
+        sliderHealth.value=health;
+
        if  (inputActions.Standard.Fire.WasPressedThisFrame()){ 
             // If the fire button is pressed, instantiate a bullet at the spawn point
            GameObject bulletObj = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
@@ -55,16 +62,26 @@ public class Player : MonoBehaviour{
 
        if (this.transform.position.x > X_LIMIT){ 
             // If the player goes above the X limit, set its position to the X limit
-           this.transform.position = new Vector3(transform.position.y, X_LIMIT);
+           this.transform.position = new Vector3(X_LIMIT ,transform.position.y );
        }
 
-       else if (this.transform.position.x < (-X_LIMIT - 0.8f)){ 
+       else if (this.transform.position.x < -X_LIMIT ){ 
             // If the player goes below the X limit, set its position to the negative X limit.                                            
             // I added 0.8f to account for the size of the player sprite, so it doesn't go off screen completely.
-           this.transform.position = new Vector3(transform.position.y, -X_LIMIT);
+           this.transform.position = new Vector3(-X_LIMIT, transform.position.y);
        }
-
     }
-}
+          public void DamageFromEnemy()
+    {
+        if (!shield.IsActive){
+        health-=0.25f;
+    }
+    }
+public void RefillShield()
+    {
+        shield.FullRefill();
+    }
+    
 
+}
 // test
