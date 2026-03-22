@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5223550724154584472}
   - component: {fileID: 3713040213467503634}
   - component: {fileID: -8347259488061535355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShieldBoost
   m_TagString: ShieldBoost
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 253497792059149960}
   - component: {fileID: 1466851040156005004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

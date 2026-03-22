@@ -4,7 +4,7 @@ using TMPro;
 public class Score : MonoBehaviour
 {
     private TextMeshProUGUI txtScore;
-    private static float score;
+    public static float score;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {

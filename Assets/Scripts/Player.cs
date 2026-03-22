@@ -28,6 +28,7 @@ public class Player : MonoBehaviour{
        
 
         sliderHealth.value=health;
+        
 
        if  (inputActions.Standard.Fire.WasPressedThisFrame()){ 
             // If the fire button is pressed, instantiate a bullet at the spawn point
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour{
     {
         if (!shield.IsActive){
         health-=0.25f;
+        
     }
     }
 public void RefillShield()
