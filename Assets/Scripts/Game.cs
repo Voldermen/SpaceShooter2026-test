@@ -1,38 +1,58 @@
 using UnityEngine;
 
 public class Game : MonoBehaviour {
-  // set in inspector
-  public float enemySpawnDelay;
-  public GameObject enemyPrefab;
-  public GameObject powerupPrefab;
-  public BoxCollider2D spawnRange;
-  public UI ui;
+    // set in inspector
+    public float enemySpawnDelay;
+    public GameObject enemyPrefab;
+    public GameObject powerupPrefab;
+    public GameObject healthPickupPrefab;
+    public GameObject speedPowerupPrefab;
+    public BoxCollider2D spawnRange;
+    public UI ui;
 
-  // private fields
-  private float powerUpDelay;
-  private float enemySpawnTimer;
-  private float powerupSpawnTimer;
+    // private fields
+    private float powerUpDelay;
+    private float enemySpawnTimer;
+    private float powerupSpawnTimer;
 
-  private void Start() {
-    powerUpDelay = Random.Range(5f, 10f);
-    powerupSpawnTimer = 0;
-  }
+    private void Start() {
+        powerUpDelay = Random.Range(5f, 10f);
+        powerupSpawnTimer = 0;
+    }
 
-  private void SpawnEnemy() {
-    Vector3 enemySpawnPt = new Vector3(
-        Random.Range(spawnRange.bounds.min.x, spawnRange.bounds.max.x),
-        Random.Range(spawnRange.bounds.min.y, spawnRange.bounds.max.y),
-        0);
-    Instantiate(enemyPrefab, enemySpawnPt, Quaternion.identity);
-  }
-  private void SpawnPowerup() {
-    Vector3 powerupSpawnPt = new Vector3(
-        Random.Range(spawnRange.bounds.min.x, spawnRange.bounds.max.x),
-        Random.Range(spawnRange.bounds.min.y, spawnRange.bounds.max.y),
-        0);
-    Instantiate(powerupPrefab, powerupSpawnPt, Quaternion.identity);
-  }
-  void Update() {
+    private void SpawnEnemy() {
+        Vector3 enemySpawnPt = new Vector3(
+            Random.Range(spawnRange.bounds.min.x, spawnRange.bounds.max.x),
+            Random.Range(spawnRange.bounds.min.y, spawnRange.bounds.max.y),
+            0);
+        Instantiate(enemyPrefab, enemySpawnPt, Quaternion.identity);
+    }
+    private void SpawnPowerup() {
+        Vector3 powerupSpawnPt = new Vector3(
+            Random.Range(spawnRange.bounds.min.x, spawnRange.bounds.max.x),
+            Random.Range(spawnRange.bounds.min.y, spawnRange.bounds.max.y),
+            0);
+
+        // Roll a random number between 0 and 100
+        float dropChance = Random.Range(0f, 100f);
+
+        // 20% chance to spawn a health pickup, 80% chance to spawn a shield powerup
+        if (dropChance < 20f)
+        {
+            Instantiate(healthPickupPrefab, powerupSpawnPt, Quaternion.identity);
+        }
+        else if (dropChance > 20f && dropChance <= 40f)
+        {
+            Instantiate(powerupPrefab, powerupSpawnPt, Quaternion.identity);
+        }
+
+        else
+        {
+            Instantiate(speedPowerupPrefab, powerupSpawnPt, Quaternion.identity);
+        }
+    }
+
+void Update() {
     if (!ui.IsReady) {
       return;
     }

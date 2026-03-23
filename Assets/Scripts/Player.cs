@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Player : MonoBehaviour {
   // set in inspector
@@ -19,11 +20,13 @@ public class Player : MonoBehaviour {
   private AudioSource audioSrc;
   private float health;
   private const float Y_LIMIT = 4.6f;
+  private float originalSpeed;
 
   private void Start() {
     health = 1.0f;
     audioSrc = GetComponent<AudioSource>();
-  }
+    originalSpeed = speed;
+    }
 
   private void Update() {
     sliderHealth.value = health;
@@ -72,4 +75,35 @@ public class Player : MonoBehaviour {
     audioSrc.Play();
     shield.FullRefill();
   }
+
+    public bool Heal(float amount)
+    {
+        if (health >= 1.0f){
+            // Player is at full health, tell the pickup not to consume itself
+            return false;
+        }
+        health += amount;
+
+        // Clamp health so it doesn't exceed the max of 1.0f
+        if (health > 1.0f){
+            health = 1.0f;
+        }
+
+        // Play the powerup sound when healed!
+        if (audioSrc != null && clipPowerupReceived != null){
+            audioSrc.clip = clipPowerupReceived;
+            audioSrc.Play();
+        }
+        return true; // Successfully healed!
+    }
+
+    public void ActivateSpeedBoost(float multiplier, float duration) {
+        StartCoroutine(SpeedBoostRoroutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedBoostRoroutine(float multiplier, float duration) {
+        speed *= multiplier;
+        yield return new WaitForSeconds(duration);
+        speed = originalSpeed; // Reset to original speed after boost duration
+    }
 }

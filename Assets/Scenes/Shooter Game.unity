@@ -2366,6 +2366,8 @@ MonoBehaviour:
   enemySpawnDelay: 3
   enemyPrefab: {fileID: 3409777995842195204, guid: 992015109d2204d5c9a3ef2da01e8542, type: 3}
   powerupPrefab: {fileID: 7665686937186703866, guid: 07f2ea3b03915449aa7e57f1e6305b14, type: 3}
+  healthPickupPrefab: {fileID: 5375164553418732395, guid: c1daed3ebbef17c478914355159bdb7b, type: 3}
+  speedPowerupPrefab: {fileID: 6555624315641253224, guid: 02661d89ed2c2be49963eed129946944, type: 3}
   spawnRange: {fileID: 1681509736}
   ui: {fileID: 1637983210}
 --- !u!4 &554489001
@@ -3744,7 +3746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181851031ed6a31468c6112da4d5cd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  speed: 6
+  speed: 7
   bulletPrefab: {fileID: 7997487652698694584, guid: b45c530985e3745f2970c56d18a41a81, type: 3}
   bulletSpawnPoint: {fileID: 101424959}
   sliderHealth: {fileID: 73900209}
