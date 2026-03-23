@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88240afc6b4ae4f48a180750383bb757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHealth
-  maxHp: 6
+  maxHp: 20
 --- !u!1 &5601442858743176051
 GameObject:
   m_ObjectHideFlags: 0
