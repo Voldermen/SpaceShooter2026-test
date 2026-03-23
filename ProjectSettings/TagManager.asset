@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Bullet
   - Enemy
-  - bullet
+  - ShieldBoost
+  - ScreenOutOfBounds
   layers:
   - Default
   - TransparentFX

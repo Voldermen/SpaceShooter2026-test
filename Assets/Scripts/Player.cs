@@ -1,70 +1,75 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour{
- //set in inspector
-   public float speed = 5.1f;
-   public GameObject bulletPrefab;
-   public Transform bulletSpawnPoint;
+public class Player : MonoBehaviour {
+  // set in inspector
+  public float speed = 0.1f;
+  public GameObject bulletPrefab;
+  public Transform bulletSpawnPoint;
+  public Slider sliderHealth;
+  public Shield shield;
+  public GameObject expoPrefab;
+  public UI ui;
+  public AudioClip clipNormalFire;
+  public AudioClip clipSuperFire;
+  public AudioClip clipHurt;
+  public AudioClip clipPowerupReceived;
 
-   private SpaceShooterInputActions inputActions;
+  // private fields
+  private AudioSource audioSrc;
+  private float health;
+  private const float Y_LIMIT = 4.6f;
 
+  private void Start() {
+    health = 1.0f;
+    audioSrc = GetComponent<AudioSource>();
+  }
 
-   private const float Y_LIMIT = 4.6f;
-   private const float X_LIMIT = 8.0f; 
+  private void Update() {
+    sliderHealth.value = health;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start(){
-    
-        inputActions= new();
-        inputActions.Enable();
-        inputActions.Standard.Enable();
+    if (SpaceShooterInput.Instance.input.Fire.WasPressedThisFrame()) {
+      GameObject bulletObj = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+      audioSrc.clip = clipNormalFire;
+      audioSrc.Play();
+    }
+    if (SpaceShooterInput.Instance.input.SuperFire.WasPressedThisFrame()) {
+      GameObject bulletObj = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+      bulletObj.GetComponent<Bullet>().speed *= 2;
+      Instantiate(bulletPrefab, bulletSpawnPoint.position + Vector3.up * 0.5f, Quaternion.identity);
+      Instantiate(bulletPrefab, bulletSpawnPoint.position + Vector3.up * -0.5f, Quaternion.identity);
+      audioSrc.clip = clipSuperFire;
+      audioSrc.Play();
     }
 
-    // Update is called once per frame
-    private void Update(){
-       if  (inputActions.Standard.Fire.WasPressedThisFrame()){ 
-            // If the fire button is pressed, instantiate a bullet at the spawn point
-           GameObject bulletObj = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-       }
-       if (inputActions.Standard.MoveUp.IsPressed()){ 
-            // If up is pressed, move the player up
-           this.transform.Translate(Vector3.up * speed * Time.deltaTime);
-         
-       } 
-       else if (inputActions.Standard.MoveDown.IsPressed()){ 
-            // If down is pressed, move the player down
-           this.transform.Translate(Vector3.down * speed * Time.deltaTime);
-       } 
-       if (this.transform.position.y > (Y_LIMIT - 0.3f)){ 
-            // If the player goes above the Y limit, set its position to the Y limit
-           this.transform.position = new Vector3(transform.position.x, (Y_LIMIT - 0.3f));
-       }
-       else if (this.transform.position.y < (-Y_LIMIT - 0.1f)){ 
-            // If the player goes below the Y limit, set its position to the negative Y limit
-           this.transform.position = new Vector3(transform.position.x, (-Y_LIMIT - 0.1f));
-       }
+    var vertMove = SpaceShooterInput.Instance.input.MoveVertically.ReadValue<float>();
+    this.transform.Translate(Vector3.up * speed * Time.deltaTime * vertMove);
 
-       if (inputActions.Standard.MoveRight.IsPressed()){ 
-            // If right is pressed, move the player right
-           this.transform.Translate(Vector3.right * speed * Time.deltaTime);
-       }
-       else if (inputActions.Standard.MoveLeft.IsPressed()){ 
-            // If left is pressed, move the player left
-           this.transform.Translate(Vector3.left * speed * Time.deltaTime);
-       }
-
-       if (this.transform.position.x > (X_LIMIT - 0.1f)){ 
-            // If the player goes above the X limit, set its position to the X limit
-           this.transform.position = new Vector3((X_LIMIT - 0.1f), transform.position.y);
-       }
-
-       else if (this.transform.position.x < (-X_LIMIT - 0.6f)){ 
-            // If the player goes below the X limit, set its position to the negative X limit.                                            
-            // I added 0.8f to account for the size of the player sprite, so it doesn't go off screen completely.
-           this.transform.position = new Vector3((-X_LIMIT - 0.6f) , transform.position.y);
-       }
-
+    if (this.transform.position.y > Y_LIMIT) {
+      this.transform.position = new Vector3(transform.position.x, Y_LIMIT);
     }
+    else if (this.transform.position.y < -Y_LIMIT) {
+      this.transform.position = new Vector3(transform.position.x, -Y_LIMIT);
+    }
+  }
+
+  public void DamageFromEnemy() {
+    if (!shield.IsActive) {
+      audioSrc.clip = clipHurt;
+      audioSrc.Play();
+      health -= 0.25f;
+      if (health <= 0) {
+        var expoObj = Instantiate(expoPrefab, transform.position, Quaternion.identity);
+        Destroy(expoObj, expoObj.GetComponent<ParticleSystem>().main.duration);
+        Destroy(gameObject);
+        ui.ShowGameOver();
+      }
+    }
+  }
+
+  public void RefillShield() {
+    audioSrc.clip = clipPowerupReceived;
+    audioSrc.Play();
+    shield.FullRefill();
+  }
 }
-
-// test
