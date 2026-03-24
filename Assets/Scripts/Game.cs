@@ -11,6 +11,7 @@ public class Game : MonoBehaviour
     public GameObject speedPowerupPrefab;
     public BoxCollider2D spawnRange;
     public UI ui;
+    public GameObject hEnemyPrefab;
 
     // --- NEW BOSS VARIABLES ---
     [Header("Boss Settings")]
@@ -45,6 +46,12 @@ public class Game : MonoBehaviour
             Random.Range(spawnRange.bounds.min.y, spawnRange.bounds.max.y),
             0);
         Instantiate(enemyPrefab, enemySpawnPt, Quaternion.identity);
+    }
+    private void SpawnHEnemy()
+    {
+        Vector3 enemySpawnPt= new Vector3 ( Random.Range(spawnRange.bounds.min.x,spawnRange.bounds.max.x),
+        Random.Range(spawnRange.bounds.min.y, spawnRange.bounds.max.y),0);
+        Instantiate(hEnemyPrefab, enemySpawnPt, Quaternion.identity);
     }
 
     private void SpawnPowerup()
@@ -115,6 +122,7 @@ public class Game : MonoBehaviour
             enemySpawnTimer += Time.deltaTime;
             if (enemySpawnTimer >= enemySpawnDelay)
             {
+                SpawnHEnemy();
                 SpawnEnemy();
                 enemySpawnTimer = 0.0f;
             }

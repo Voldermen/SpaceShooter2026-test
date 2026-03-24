@@ -38,7 +38,7 @@ public class BossBullet : MonoBehaviour
             Destroy(gameObject);
             c.gameObject.GetComponent<Player>().DamageFromEnemy();
         }
-        else if (c.gameObject.CompareTag("bullet")){ // player can shoot down the bosses bullets.
+        else if (c.gameObject.CompareTag("Bullet")){ // player can shoot down the bosses bullets.
             Destroy(gameObject);
             Destroy(c.gameObject);
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 616670890034781482}
   - component: {fileID: 3896744408794036710}
   - component: {fileID: 2634502158900726263}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: HealthPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 810653327106616521}
   - component: {fileID: 1565061320129469639}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

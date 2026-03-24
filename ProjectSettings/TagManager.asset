@@ -16,11 +16,11 @@ TagManager:
   - Water
   - UI
   - Bullet
-  - 
-  - 
-  - 
-  - 
-  - 
+  - BossBullet
+  - Boss
+  - Enemy
+  - Powerup
+  - BossBullet2
   - 
   - 
   - 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6168128287055732191}
   - component: {fileID: 3815888596143757366}
   - component: {fileID: 4721374590151311934}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5984827187862416685}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: bbSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5442329699664236504}
   - component: {fileID: 7098358249384779886}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

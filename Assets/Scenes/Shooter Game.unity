@@ -2370,6 +2370,7 @@ MonoBehaviour:
   speedPowerupPrefab: {fileID: 6555624315641253224, guid: 02661d89ed2c2be49963eed129946944, type: 3}
   spawnRange: {fileID: 1681509736}
   ui: {fileID: 1637983210}
+  hEnemyPrefab: {fileID: 4532109976074891607, guid: 3927ce8aabf75fc419025564c751973a, type: 3}
   bossPrefab: {fileID: 1944748635878879761, guid: d80d6bbf2e599f649b64bed9e218dee7, type: 3}
   bossHealthBar: {fileID: 1950843478}
   timeBeforeBoss: 30

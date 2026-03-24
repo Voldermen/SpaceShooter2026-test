@@ -34,7 +34,7 @@ public class HomingEnemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
     }
     private void OnCollisionEnter2D(Collision2D c){
-        if (c.gameObject.CompareTag("bullet")){
+        if (c.gameObject.CompareTag("Bullet")){
             Destroy(gameObject);
             Destroy(c.gameObject);
             Score.Instance.HitEnemy();

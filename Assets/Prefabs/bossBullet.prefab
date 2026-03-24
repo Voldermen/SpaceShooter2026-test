@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1604952448937112753}
   - component: {fileID: 9021784972273477107}
   - component: {fileID: -5843212430457355393}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: bossBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243998412483597751}
   - component: {fileID: 1182570631022085933}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

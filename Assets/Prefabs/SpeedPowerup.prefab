@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7531424453486080048}
   - component: {fileID: 1155582293896661833}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 4460415637993599879}
   - component: {fileID: 2630187935598585231}
   - component: {fileID: -4165802051392511597}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: SpeedPowerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}

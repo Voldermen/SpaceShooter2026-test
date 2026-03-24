@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7836446800365666259}
   - component: {fileID: 1156599056198980031}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 258100987796046379}
   - component: {fileID: 8561802031028060108}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1007022296367126104}
   - component: {fileID: 1784170082210709197}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 4912957064377177949}
   - component: {fileID: 5523072456569318372}
   - component: {fileID: 9147147808910161244}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShieldBoost
   m_TagString: ShieldBoost
   m_Icon: {fileID: 0}
