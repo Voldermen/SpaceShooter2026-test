@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88240afc6b4ae4f48a180750383bb757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHealth
-  maxHp: 20
+  baseMaxHp: 6
 --- !u!1 &5601442858743176051
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,13 +205,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7741510634432718633}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.07201668, y: 0.00019286755, z: 0.0026711419, w: 0.9973999}
+  m_LocalRotation: {x: -0.050990555, y: 0.0017823293, z: -0.71409, w: 0.6981921}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.4388, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5450215309410036488}
-  m_LocalEulerAnglesHint: {x: -8.26, y: 0, z: 0.307}
+  m_LocalEulerAnglesHint: {x: -3.937, y: 4.329, z: -91.439}
 --- !u!212 &7098358249384779886
 SpriteRenderer:
   serializedVersion: 2
@@ -261,8 +261,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.36477977, g: 0.021794947, b: 0.021794947, a: 1}
+  m_Sprite: {fileID: 8420546036394810155, guid: d64e774c39e30974bab53d26bce1680f, type: 3}
+  m_Color: {r: 0.78823537, g: 0.6509804, b: 0.3803922, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
