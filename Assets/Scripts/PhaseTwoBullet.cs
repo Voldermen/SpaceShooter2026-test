@@ -11,13 +11,19 @@ public class PhaseTwoBullet : MonoBehaviour
        this.transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
 
-    
-    private void OnCollisionEnter2D(Collision2D c) // the bosses bullets can damage the player by 0.25f by calling the damage player method.
+
+    private void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.gameObject.CompareTag("Player"))
+        // 1. Check if the bullet hits the shield forcefield first
+        if (c.gameObject.CompareTag("Shield"))
         {
-            Destroy(gameObject);
-            c.gameObject.GetComponent<Player>().DamageFromEnemy();
+            Destroy(gameObject); // Bullet safely absorbs into the shield
         }
-}
+        // 2. Otherwise, if it hits the player's hull
+        else if (c.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject); // Destroy the bullet
+            c.gameObject.GetComponent<Player>().DamageFromEnemy(); // Hurt the player
+        }
+    }
 }

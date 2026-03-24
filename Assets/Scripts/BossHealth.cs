@@ -5,6 +5,7 @@ public class BossHealth : MonoBehaviour
 {
     [Header("Boss Stats")]
     public float baseMaxHp = 6f;
+    public GameObject explosionPrefab;
 
     // private variables
     private float currentHp;
@@ -94,7 +95,11 @@ public class BossHealth : MonoBehaviour
         {
             game.bossIsDef(); // Tell Game.cs to start normal waves again
         }
-
+        if (explosionPrefab != null)
+        {
+            // This drops the explosion at the exact coordinates the boss died at
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject); // Destroy the boss
     }
 }

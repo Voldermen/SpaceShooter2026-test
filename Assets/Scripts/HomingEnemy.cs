@@ -5,6 +5,7 @@ public class HomingEnemy : MonoBehaviour
     // public variables
     public float speed= 10f;
     public float rotationSpeed= 200f;
+    public GameObject expoPrefab;
 
     // private variables
     private Transform target;
@@ -35,6 +36,8 @@ public class HomingEnemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D c){
         if (c.gameObject.CompareTag("Bullet")){
+            var expoObj = Instantiate(expoPrefab, transform.position, Quaternion.identity);
+            Destroy(expoObj, expoObj.GetComponent<ParticleSystem>().main.duration);
             Destroy(gameObject);
             Destroy(c.gameObject);
             Score.Instance.HitEnemy();

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - ShieldBoost
   - ScreenOutOfBounds
+  - Shield
   layers:
   - Default
   - TransparentFX

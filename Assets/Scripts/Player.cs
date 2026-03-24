@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
   public float speed = 0.1f;
   public GameObject bulletPrefab;
   public Transform bulletSpawnPoint;
-  public Slider sliderHealth;
+    public Image healthBarImage;
   public Shield shield;
   public GameObject expoPrefab;
   public UI ui;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
     }
 
   private void Update() {
-    sliderHealth.value = health;
+    healthBarImage.fillAmount = health;
 
     if (SpaceShooterInput.Instance.input.Fire.WasPressedThisFrame()) {
       GameObject bulletObj = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
@@ -72,6 +72,10 @@ public class Player : MonoBehaviour {
       audioSrc.clip = clipHurt;
       audioSrc.Play();
       health -= 0.25f;
+
+      healthBarImage.fillAmount = health;
+
+
       if (health <= 0) {
         var expoObj = Instantiate(expoPrefab, transform.position, Quaternion.identity);
         Destroy(expoObj, expoObj.GetComponent<ParticleSystem>().main.duration);
