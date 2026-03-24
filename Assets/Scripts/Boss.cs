@@ -21,6 +21,8 @@ public class Boss : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private bool isPhaseTwo=false;
     private float timer=0f;
+    private int bossDifficulty=0;
+    private float shotDelay;
     void Start()
     {
        startingY= transform.position.y; // This will save the initial y position.
@@ -29,13 +31,14 @@ public class Boss : MonoBehaviour
        
        player=playerObj.transform;// this points to the player objects transform (basically coordinates).
        
-
+        shotDelay = timeBetweenShots;
         StartCoroutine(shooting()); // this is a coroutine it is a method that will allow me to make the boss not spam bullets. if it was in the update method it would spawn a homing bullet every frame. https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Coroutine.html
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (!stoppingPoint)
         {
             Vector3 targetPosition= new Vector3(xPosition,startingY,0); // this is the position that I want the boss to go to.
@@ -58,7 +61,7 @@ public class Boss : MonoBehaviour
         if (isPhaseTwo)
         {
             timer += Time.deltaTime;
-            if (timer >= rateOfFire) // Like how the enemy spawns work have it wait a bit before firing.
+            if (timer >= shotDelay) // Like how the enemy spawns work have it wait a bit before firing.
             {
                 Instantiate(phaseTwoBulletsPrefab, bbSpawn.position, Quaternion.identity);
                 timer=0f;
@@ -66,6 +69,11 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public void difficultyLevel(int level)
+    {
+        bossDifficulty=level;
+        shotDelay = Mathf.Max(0.5f, timeBetweenShots -(bossDifficulty * 0.25f)); // the boss shoots a little bit faster every 20000 points it cannot go under 1.
+    }
     public void beginSecondPhase() // second phase flag.
     {
         isPhaseTwo=true;
@@ -75,7 +83,7 @@ private IEnumerator shooting() // This coroutine also helps with me doing the se
     {
         while (true)
         {
-            yield return new WaitForSeconds(timeBetweenShots);
+            yield return new WaitForSeconds(shotDelay);
 
             if (stoppingPoint)
             {

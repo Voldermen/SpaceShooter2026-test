@@ -4,19 +4,22 @@ using UnityEngine.UI;
 public class BossHealth : MonoBehaviour
 {
     [Header("Boss Stats")]
-    public float maxHp = 6f;
+    public float baseMaxHp = 6f;
 
     // private variables
     private float currentHp;
     private Slider bossHealth;
     private Game game;
     private bool secondPhase = false;
+    private float maxHp;
 
     // This is sent over from Game.cs when the boss spawns
-    public void gameTransfer(Slider healthBar, Game gameScript)
+    public void gameTransfer(Slider healthBar, Game gameScript, int bossDifficulty)
     {
         bossHealth = healthBar;
         game = gameScript;
+        
+        maxHp= baseMaxHp + (bossDifficulty * 3f); //increases the max health of the bossby 3 hp every 20000 points.
         currentHp = maxHp;
 
         if (bossHealth != null)

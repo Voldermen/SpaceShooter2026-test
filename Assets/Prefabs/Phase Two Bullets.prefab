@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa6192db3137bd458dacf0da75519d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaseTwoBullet
-  speed: 5
+  speed: 8
 --- !u!1 &4011136003387890559
 GameObject:
   m_ObjectHideFlags: 0

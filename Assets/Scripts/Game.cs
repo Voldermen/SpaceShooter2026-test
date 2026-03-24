@@ -17,11 +17,10 @@ public class Game : MonoBehaviour
     [Header("Boss Settings")]
     public GameObject bossPrefab;
     public Slider bossHealthBar;
-    public float timeBeforeBoss = 30f;
+    private float bossScore = 10000f; 
 
-    private bool bossHasSpawned = false;
     private bool isBossAlive = false;
-    private float gameTimer = 0f;
+    
 
     // private fields
     private float powerUpDelay;
@@ -80,17 +79,20 @@ public class Game : MonoBehaviour
     // --- SPAWN BOSS METHOD ---
     private void SpawnBoss()
     {
-        bossHasSpawned = true;
         isBossAlive = true;
 
         Vector3 bossSpawnPt = new Vector3(spawnRange.bounds.max.x + 2f, 0, 0);
         GameObject bossObj = Instantiate(bossPrefab, bossSpawnPt, Quaternion.identity);
+        Boss boss = bossObj.GetComponent<Boss>();
+        int bossDifficulty= Mathf.FloorToInt(Score.score / 20000f); // every 20000 points the bosses bullets move faster and it has more health.
 
         BossHealth bossHealthScript = bossObj.GetComponent<BossHealth>();
         if (bossHealthScript != null)
         {
-            bossHealthScript.gameTransfer(bossHealthBar, this);
+            bossHealthScript.gameTransfer(bossHealthBar, this, bossDifficulty); // the boss health bar, a current instance of the Game script, and the bosses difficulty level are passed to the boss health script.
         }
+
+        boss.difficultyLevel(bossDifficulty); // the fire rate is altered every time the player hits every 20000.
     }
 
     // --- REQUIRED BY BOSSHEALTH.CS ---
@@ -107,13 +109,10 @@ public class Game : MonoBehaviour
         }
 
         // --- BOSS TIMER ---
-        if (!bossHasSpawned)
+        if (!isBossAlive && Score.score >= bossScore)
         {
-            gameTimer += Time.deltaTime;
-            if (gameTimer >= timeBeforeBoss)
-            {
-                SpawnBoss();
-            }
+            SpawnBoss();
+            bossScore += 10000; // A boss spawns every 10000 points.
         }
 
         // check spawn enemy (ONLY if the boss is NOT alive!)
